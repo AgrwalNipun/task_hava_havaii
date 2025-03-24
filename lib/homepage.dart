@@ -1,5 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/retry.dart';
 import 'package:task_hava_havaii/api.dart';
+import 'package:task_hava_havaii/product_data.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -10,22 +15,52 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
 
-  var data;
+   
 
   @override
   void initState() {
     // TODO: implement initState
-    data = getApi(context);
+    // data = getApi(context);
+    // getApi();
+    
     super.initState();
   }
+
+  
   @override
   Widget build(BuildContext context) {
+    final data = getApi();
+
     return Scaffold(
+      backgroundColor: Colors.pink.shade100,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
+        backgroundColor: Colors.pink.shade100,
         title: Text("Catalogue"),
-        actions: [Icon(Icons.shopping_cart)],
+        actions: [Icon(Icons.shopping_cart_outlined)],
       ),
-      body: Text(data),
-    );
-  }
+      body :
+        Center(child:
+        FutureBuilder(
+          future: data,
+         builder: (context,snapshot){
+          if(snapshot.connectionState == ConnectionState.waiting){
+            return CircularProgressIndicator();
+          }
+          else if(snapshot.hasData){
+            return Container(
+              child: 
+              productData(snapshot.data),
+            );
+          }
+          else {
+            return Text("Aerror");
+          }
+        })
+        )
+        
+
+        );
+        
+        }
 }
