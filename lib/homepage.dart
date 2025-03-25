@@ -1,10 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:http/retry.dart';
 import 'package:task_hava_havaii/api.dart';
-import 'package:task_hava_havaii/product_data.dart';
+import 'package:task_hava_havaii/product_card.dart';
+import 'package:task_hava_havaii/shopping_cart.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -37,7 +34,11 @@ class _HomepageState extends State<Homepage> {
       appBar: AppBar(
         backgroundColor: Colors.pink.shade100,
         title: Text("Catalogue"),
-        actions: [Icon(Icons.shopping_cart_outlined)],
+        actions: [IconButton(
+          onPressed: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ShoppingCart())),
+          icon :Icon(Icons.shopping_cart_outlined),
+        )],
+
       ),
       body :
         Center(child:
@@ -50,7 +51,7 @@ class _HomepageState extends State<Homepage> {
           else if(snapshot.hasData){
             return Container(
               child: 
-              productData(snapshot.data),
+              productCard(snapshot.data),
             );
           }
           else {
