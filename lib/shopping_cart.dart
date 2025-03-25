@@ -52,7 +52,7 @@ return Scaffold(
                 final product = list[productId-1];
                 final discountedPrice = (product['price']*(100-product['discountPercentage'])/100);
                 final discountedPriceString = discountedPrice.toStringAsFixed(2);
-                total+=discountedPrice ;
+                total+=discountedPrice*productList.elementAt(index).value;
               return Container(
                 color: Colors.white,
                 margin: EdgeInsets.symmetric(vertical: 10),
