@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart' as ref;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_hava_havaii/api.dart';
 import 'package:task_hava_havaii/data_model.dart';

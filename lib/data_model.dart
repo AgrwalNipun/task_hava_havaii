@@ -1,7 +1,6 @@
 
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:task_hava_havaii/shopping_cart.dart';
 
 // final productDataProvider = StateNotifierProvider((ref)=>productNotifier(
 //    product(id: 1, quantity:0)
