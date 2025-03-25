@@ -1,6 +1,7 @@
 
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:task_hava_havaii/shopping_cart.dart';
 
 // final productDataProvider = StateNotifierProvider((ref)=>productNotifier(
 //    product(id: 1, quantity:0)
@@ -38,8 +39,29 @@ void addItem(WidgetRef ref, int id) {
   ref.read(mapProvider.notifier).state = newMap;
 }
 
-void removeItem(WidgetRef ref, String key) {
+void removeItem(WidgetRef ref, int key) {
+
+
   final newMap = Map<int, int>.from(ref.read(mapProvider));
-  newMap.remove(key);
+  if(newMap[key]!>1){
+  newMap[key] = newMap[key]!-1;
+  }
+  else{
+    newMap.remove(key);
+  }
   ref.read(mapProvider.notifier).state = newMap;
 }
+
+// double sum(WidgetRef ref){
+//   Future.delayed(Duration(
+//     seconds: 3
+//   ));
+//   final totalPrice = ref.read(totalProvider);
+  
+//   double total =0;
+//   for(double d in totalPrice){
+//     total+=d;
+//   }
+// print('total = $total');
+//   return total;
+// }

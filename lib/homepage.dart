@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_hava_havaii/api.dart';
 import 'package:task_hava_havaii/product_card.dart';
 import 'package:task_hava_havaii/shopping_cart.dart';
 
-class Homepage extends StatefulWidget {
+class Homepage extends ConsumerStatefulWidget {
   const Homepage({super.key});
 
   @override
-  State<Homepage> createState() => _HomepageState();
+  ConsumerState<Homepage> createState() => _HomepageState();
 }
 
-class _HomepageState extends State<Homepage> {
-
+class _HomepageState extends ConsumerState<Homepage> {
    
-
+final data = getApi();
   @override
   void initState() {
     // TODO: implement initState
     // data = getApi(context);
     // getApi();
-    
+
     super.initState();
   }
 
   
   @override
   Widget build(BuildContext context) {
-    final data = getApi();
+    
 
     return Scaffold(
       backgroundColor: Colors.pink.shade100,
